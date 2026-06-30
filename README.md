@@ -1,2 +1,223 @@
 # SecureFlow
 A lightweight Gradle plugin and Android lint rule set that helps Android teams detect privacy, security, and release-readiness issues early in development and CI.
+
+Modern Android applications increasingly process sensitive user data through analytics, logging, backend APIs, AI workflows, and third-party SDK integrations. SecureFlow provides lightweight, CI-friendly checks that help developers detect risky patterns before code reaches production.
+
+## Purpose
+
+The goal of this project is to make privacy and security review more practical for Android engineering teams by converting common review concerns into repeatable automated checks.
+
+SecureFlow focuses on:
+
+* Reducing accidental exposure of sensitive user data,
+* Identifying unsafe logging patterns,
+* Detecting risky network and manifest configurations,
+* Improving release-readiness checks,
+* Supporting privacy-aware AI workflows,
+* And helping teams adopt consistent secure development practices.
+
+## Why This Matters
+
+AI-enabled and data-driven mobile applications often process user-generated content, prompts, metadata, analytics events, and backend payloads. Without proper safeguards, sensitive information can accidentally appear in logs, prompts, crash reports, analytics events, or misconfigured network requests.
+
+SecureFlow helps developers catch these issues early by scanning Android source code and project configuration for patterns that deserve review.
+
+## Current Status
+
+This project is currently in early MVP development.
+
+The initial version focuses on a small set of practical checks that can run locally or in CI.
+
+## Planned MVP Checks
+
+### 1. Hardcoded Secret Detection
+
+Detects suspicious hardcoded values in Kotlin, Java, XML, Gradle, and properties files.
+
+Example patterns:
+
+* API keys
+* access tokens
+* bearer tokens
+* client secrets
+* AI provider keys
+* Firebase server keys
+
+### 2. Unsafe Logging Detection
+
+Flags production logging statements that may expose sensitive values.
+
+Example patterns:
+
+```kotlin
+Log.d("User", user.email)
+Log.e("AI_REQUEST", prompt)
+println(accessToken)
+```
+
+### 3. Cleartext Traffic Detection
+
+Detects potentially unsafe network configuration such as:
+
+```xml
+android:usesCleartextTraffic="true"
+```
+
+### 4. Exported Component Review
+
+Flags exported Android components that may need additional permission protection.
+
+Example:
+
+```xml
+<activity
+    android:name=".InternalActivity"
+    android:exported="true" />
+```
+
+### 5. Risky WebView Configuration
+
+Detects WebView settings that may require additional review, such as JavaScript enablement or JavaScript bridge usage.
+
+Example:
+
+```kotlin
+webView.settings.javaScriptEnabled = true
+webView.addJavascriptInterface(...)
+```
+
+### 6. AI Prompt Privacy Review
+
+Detects code patterns where raw user input may be sent into AI prompts or backend AI workflows without visible minimization or redaction.
+
+Example:
+
+```kotlin
+val prompt = "Summarize this user content: $userInput"
+```
+
+The goal is not to block AI usage, but to encourage safer AI data handling practices.
+
+## Example Usage
+
+Apply the plugin:
+
+```kotlin
+plugins {
+    id("dev.randos.secure-flow") version "0.1.0"
+}
+```
+
+Run the secure flow scan:
+
+```bash
+./gradlew secureFlowCheck
+```
+
+Generate a report:
+
+```bash
+./gradlew secureFlowReport
+```
+
+Example output:
+
+```text
+SecureFlow Report
+----------------------------
+
+Critical: 2
+Warning: 4
+Info: 3
+
+[Critical] Hardcoded secret detected in NetworkModule.kt
+[Critical] Cleartext traffic enabled in AndroidManifest.xml
+[Warning] Raw AI prompt logged in RecipeAIService.kt
+[Warning] WebView JavaScript enabled in WebViewScreen.kt
+```
+
+## Report Formats
+
+The MVP will support:
+
+* Markdown report
+* JSON report
+
+Planned output:
+
+```text
+build/reports/secure-flow/privacy-report.md
+build/reports/secure-flow/privacy-report.json
+```
+
+## CI/CD Integration
+
+SecureFlow is designed to run in CI pipelines such as GitHub Actions, Jenkins, Bitrise, and CircleCI.
+
+Example GitHub Actions usage:
+
+```yaml
+name: Secure Flow
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  secure-flow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Run Secure Flow
+        run: ./gradlew secureFlowCheck
+```
+
+## Project Roadmap
+
+### Phase 1: MVP
+
+* Gradle plugin
+* Basic file scanning
+* Privacy/security rule engine
+* Markdown and JSON reports
+* Sample Android app
+* GitHub Actions example
+
+### Phase 2: Android Lint Integration
+
+* Custom Android lint rules
+* IDE-visible warnings
+* Lint baseline support
+* Severity configuration
+
+### Phase 3: Android Studio Plugin
+
+* Tool window inside Android Studio
+* Project privacy score
+* Quick navigation to risky files
+* Rule documentation inside IDE
+* Suggested remediation steps
+
+### Phase 4: Advanced Privacy-Aware AI Workflow Checks
+
+* Prompt minimization checks
+* AI payload logging detection
+* Sensitive field redaction suggestions
+* AI provider configuration review
+* Privacy policy and implementation alignment checklist
+
+## Vision
+
+SecureFlow aims to become a practical open-source tool for Android developers who want to build secure, privacy-aware, and production-ready mobile applications.
+
+The long-term goal is to help engineering teams move privacy and security checks earlier in the software development lifecycle, where issues are easier and less expensive to fix.
+
