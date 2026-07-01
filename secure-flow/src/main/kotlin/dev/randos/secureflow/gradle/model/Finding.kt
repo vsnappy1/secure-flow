@@ -8,5 +8,5 @@ data class Finding(
     val message: String,
     val filePath: String,
     val lineNumber: Int,
-    val evidence: String,
+    val evidence: String
 )

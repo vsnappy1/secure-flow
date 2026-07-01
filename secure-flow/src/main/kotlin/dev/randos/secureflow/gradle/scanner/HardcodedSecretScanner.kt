@@ -35,7 +35,7 @@ class HardcodedSecretScanner {
                     }
                     return FileVisitResult.CONTINUE
                 }
-            },
+            }
         )
 
         return findings
@@ -61,7 +61,7 @@ class HardcodedSecretScanner {
                 message = "Suspicious hardcoded secret detected",
                 filePath = relativePath,
                 lineNumber = index + 1,
-                evidence = trimmed.redact(detected),
+                evidence = trimmed.redact(detected)
             )
         }
     }
@@ -154,7 +154,7 @@ class HardcodedSecretScanner {
             ".java",
             ".xml",
             ".gradle",
-            ".properties",
+            ".properties"
         )
 
         val IGNORED_DIRECTORIES = setOf(
@@ -163,7 +163,7 @@ class HardcodedSecretScanner {
             ".idea",
             "build",
             ".externalNativeBuild",
-            ".cxx",
+            ".cxx"
         )
 
         val SENSITIVE_NAMES = listOf(
@@ -188,7 +188,7 @@ class HardcodedSecretScanner {
             "anthropic_api_key",
             "gemini_api_key",
             "ai_api_key",
-            "private_key",
+            "private_key"
         )
 
         val TOKEN_PATTERNS = listOf(
@@ -199,15 +199,15 @@ class HardcodedSecretScanner {
             Pattern.compile("\\bgithub_pat_[A-Za-z0-9_]{30,}\\b"),
             Pattern.compile("\\bxox[baprs]-[A-Za-z0-9-]{20,}\\b"),
             Pattern.compile("\\bAKIA[0-9A-Z]{16}\\b"),
-            Pattern.compile("\\bSG\\.[A-Za-z0-9_-]{16,}\\.[A-Za-z0-9_-]{16,}\\b"),
+            Pattern.compile("\\bSG\\.[A-Za-z0-9_-]{16,}\\.[A-Za-z0-9_-]{16,}\\b")
         )
 
         val ASSIGNED_VALUE: Pattern = Pattern.compile(
-            "(?i)(?:=|:|:=|=>|value\\s*=)\\s*[\"']?([^\"'\\s,;<>)]{8,})[\"']?",
+            "(?i)(?:=|:|:=|=>|value\\s*=)\\s*[\"']?([^\"'\\s,;<>)]{8,})[\"']?"
         )
 
         val XML_STRING_VALUE: Pattern = Pattern.compile(
-            ">\\s*([^<\\s]{8,})\\s*<",
+            ">\\s*([^<\\s]{8,})\\s*<"
         )
     }
 }

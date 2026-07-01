@@ -44,7 +44,7 @@ abstract class SecureFlowCheckTask : DefaultTask() {
                 finding.severity,
                 finding.message,
                 finding.filePath,
-                finding.lineNumber,
+                finding.lineNumber
             )
         }
 

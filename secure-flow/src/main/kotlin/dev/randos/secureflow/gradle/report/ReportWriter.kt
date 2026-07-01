@@ -1,7 +1,7 @@
 package dev.randos.secureflow.gradle.report
 
-import dev.randos.secureflow.gradle.type.Severity
 import dev.randos.secureflow.gradle.model.Finding
+import dev.randos.secureflow.gradle.type.Severity
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
@@ -65,8 +65,7 @@ class ReportWriter {
         Files.write(path, report.toByteArray(StandardCharsets.UTF_8))
     }
 
-    private fun List<Finding>.count(severity: Severity): Int =
-        count { finding -> finding.severity == severity }
+    private fun List<Finding>.count(severity: Severity): Int = count { finding -> finding.severity == severity }
 
     private fun String.escapeMarkdown(): String = replace("|", "\\|").replace("\n", " ")
 
@@ -91,5 +90,4 @@ class ReportWriter {
             }
         }
     }
-
 }

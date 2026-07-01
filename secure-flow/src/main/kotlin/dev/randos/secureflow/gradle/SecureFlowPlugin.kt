@@ -10,12 +10,12 @@ class SecureFlowPlugin : Plugin<Project> {
         val extension = project.extensions.create(
             "secureFlow",
             SecureFlowExtension::class.java,
-            project,
+            project
         )
 
         val checkTask = project.tasks.register(
             "secureFlowCheck",
-            SecureFlowCheckTask::class.java,
+            SecureFlowCheckTask::class.java
         ) { task ->
             task.group = "verification"
             task.description = "Scans source and configuration files for SecureFlow security findings."
