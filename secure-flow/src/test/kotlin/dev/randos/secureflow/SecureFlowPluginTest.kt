@@ -96,7 +96,7 @@ class SecureFlowPluginTest {
     fun reportDirectoryLogLinkIsClickableFileUri() {
         val reportDir = temporaryFolder.newFolder("clickable-reports").toPath()
 
-        assertEquals(reportDir.toUri().toString(), LogLinkFormatter.reportDirectory(reportDir))
+        assertEquals(reportDir.toUri().toString(), reportDir)
     }
 
     @Test

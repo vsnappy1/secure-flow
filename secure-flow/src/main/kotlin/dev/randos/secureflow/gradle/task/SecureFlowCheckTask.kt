@@ -36,7 +36,7 @@ abstract class SecureFlowCheckTask : DefaultTask() {
         if (findings.isEmpty()) {
             logger.lifecycle(
                 "SecureFlow found no issues. Reports written to {}",
-                LogLinkFormatter.reportDirectory(reportPath)
+                reportPath
             )
             return
         }
@@ -44,7 +44,7 @@ abstract class SecureFlowCheckTask : DefaultTask() {
         logger.lifecycle(
             "SecureFlow found {} issue(s). Reports written to {}",
             findings.size,
-            LogLinkFormatter.reportDirectory(reportPath)
+            reportPath
         )
         findings.forEach { finding ->
             logger.lifecycle(
