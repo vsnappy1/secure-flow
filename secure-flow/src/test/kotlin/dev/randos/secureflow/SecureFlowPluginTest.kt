@@ -107,7 +107,7 @@ class SecureFlowPluginTest {
             evidence = "val secret = \"abc1...9xyz\""
         )
 
-        assertEquals("${sourcePath}:5", LogLinkFormatter.finding(projectDir, finding))
+        assertEquals("$sourcePath:5", LogLinkFormatter.finding(projectDir, finding))
     }
 
     private fun taskFor(projectDir: File, reportDir: File, failOnFindings: Boolean): SecureFlowCheckTask {
