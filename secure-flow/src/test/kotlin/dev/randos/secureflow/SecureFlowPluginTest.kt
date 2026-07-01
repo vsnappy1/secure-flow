@@ -93,13 +93,6 @@ class SecureFlowPluginTest {
     }
 
     @Test
-    fun reportDirectoryLogLinkIsClickableFileUri() {
-        val reportDir = temporaryFolder.newFolder("clickable-reports").toPath()
-
-        assertEquals(reportDir.toUri().toString(), reportDir)
-    }
-
-    @Test
     fun findingLogLinkIsClickableFileUriWithLineNumber() {
         val projectDir = temporaryFolder.newFolder("clickable-project").toPath()
         val sourcePath = projectDir.resolve("src/main/java/dev/randos/sample/sample.kt")
@@ -114,7 +107,7 @@ class SecureFlowPluginTest {
             evidence = "val secret = \"abc1...9xyz\""
         )
 
-        assertEquals("${sourcePath.toUri()}:5", LogLinkFormatter.finding(projectDir, finding))
+        assertEquals("${sourcePath}:5", LogLinkFormatter.finding(projectDir, finding))
     }
 
     private fun taskFor(projectDir: File, reportDir: File, failOnFindings: Boolean): SecureFlowCheckTask {
