@@ -1,10 +1,18 @@
 pluginManagement {
-    includeBuild("secure-flow")
 
     repositories {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    dependencyResolutionManagement {
+        repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+        repositories {
+            google()
+            mavenCentral()
+        }
+    }
 }
 
-rootProject.name = "secureflow"
+rootProject.name = "SecureFlow"
+include(":secure-flow")
