@@ -4,13 +4,14 @@ plugins {
     `java-gradle-plugin`
     `maven-publish`
     jacoco
-    alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.gradle.plugin.publish)
 }
 
 apply(from = "../gradle/jacoco.gradle.kts")
 
-group = "dev.randos.secureflow"
+group = "dev.randos"
 version = "0.1.0"
 
 gradlePlugin {
