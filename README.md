@@ -133,7 +133,7 @@ Apply the plugin:
 
 ```kotlin
 plugins {
-    id("dev.randos.secure-flow") version "0.1.0"
+    id("dev.randos.secure-flow") version "0.2.0"
 }
 ```
 

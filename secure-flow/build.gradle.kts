@@ -12,7 +12,7 @@ plugins {
 apply(from = "../gradle/jacoco.gradle.kts")
 
 group = "dev.randos"
-version = "0.1.0"
+version = "0.2.0"
 
 gradlePlugin {
     plugins {
