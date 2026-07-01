@@ -3,9 +3,12 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 plugins {
     `java-gradle-plugin`
     `maven-publish`
+    jacoco
     kotlin("jvm")
     id("org.jlleitschuh.gradle.ktlint")
 }
+
+apply(from = "../gradle/jacoco.gradle.kts")
 
 group = "dev.randos.secureflow"
 version = "0.1.0"
