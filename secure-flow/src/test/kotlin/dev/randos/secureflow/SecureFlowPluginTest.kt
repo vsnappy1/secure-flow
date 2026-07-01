@@ -79,6 +79,23 @@ class SecureFlowPluginTest {
         assertTrue(json.contains("\"filePath\": \"gradle.properties\""))
     }
 
+    @Test
+    fun checkTaskIncludesUnsafeLoggingFindingsInReports() {
+        val projectDir = temporaryFolder.newFolder("project-with-unsafe-log")
+        Files.write(
+            projectDir.toPath().resolve("ProfileScreen.kt"),
+            "Log.d(\"User\", user.email)\n".toByteArray(StandardCharsets.UTF_8)
+        )
+        val reportDir = temporaryFolder.newFolder("unsafe-log-reports")
+        val task = taskFor(projectDir, reportDir, failOnFindings = false)
+
+        task.run()
+
+        val json = reportDir.toPath().resolve("privacy-report.json").readText()
+        assertTrue(json.contains("\"warning\": 1"))
+        assertTrue(json.contains("\"ruleId\": \"UnsafeLogging\""))
+    }
+
     @Test(expected = GradleException::class)
     fun checkTaskFailsWhenFindingsAreDetectedAndFailureIsEnabled() {
         val projectDir = temporaryFolder.newFolder("failing-project")

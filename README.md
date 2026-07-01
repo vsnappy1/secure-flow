@@ -5,7 +5,7 @@
 </p>
 
 # SecureFlow
-SecureFlow is an open-source Android security and privacy automation toolkit designed to help developers identify risky patterns before they reach production. The current MVP provides a Gradle-based hardcoded secret scanner, with planned Android lint rules for unsafe logging, network configuration, exported components, WebView risks, and AI prompt privacy review.
+SecureFlow is an open-source Android security and privacy automation toolkit designed to help developers identify risky patterns before they reach production. The current MVP provides Gradle-based hardcoded secret and unsafe logging scanners, with planned Android lint rules for network configuration, exported components, WebView risks, and AI prompt privacy review.
 
 Modern Android applications often process sensitive user data through analytics, logs, backend APIs, AI workflows, and third-party SDK integrations. SecureFlow brings lightweight, CI-friendly privacy and security checks into the Android development workflow so teams can detect issues earlier, reduce manual review effort, and strengthen release readiness.
 
@@ -32,11 +32,12 @@ SecureFlow helps developers catch these issues early by scanning Android source 
 
 SecureFlow is currently in early MVP development.
 
-The first implemented capability is Gradle-based hardcoded secret detection. This check scans Kotlin, Java, XML, Gradle, and properties files for suspicious secrets such as API keys, access tokens, bearer tokens, private keys, AI provider keys, Firebase server keys, GitHub tokens, Slack tokens, AWS access key IDs, and SendGrid keys.
+The first implemented capabilities are Gradle-based hardcoded secret detection and unsafe logging detection. These checks scan source and configuration files for suspicious secrets and risky logging statements that reference sensitive values.
 
 Implemented:
 
 * Hardcoded Secret Detection
+* Unsafe Logging Detection
 * Markdown report generation
 * JSON report generation
 * Configurable Gradle extension
@@ -45,7 +46,6 @@ Implemented:
 
 Planned next:
 
-* Unsafe logging detection
 * Cleartext traffic detection
 * Exported Android component review
 * Risky WebView configuration detection
@@ -73,6 +73,8 @@ Example patterns:
 ### 2. Unsafe Logging Detection
 
 Flags production logging statements that may expose sensitive values.
+
+Status: implemented. See [Unsafe Logging Detection](docs/unsafe-logging-detection/README.md) for details.
 
 Example patterns:
 
