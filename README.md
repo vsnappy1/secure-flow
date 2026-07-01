@@ -55,7 +55,7 @@ Planned next:
 
 ## Planned MVP Checks
 
-### [1. Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md)
+### 1. Hardcoded Secret Detection
 
 Detects suspicious hardcoded values in Kotlin, Java, XML, Gradle, and properties files.
 
