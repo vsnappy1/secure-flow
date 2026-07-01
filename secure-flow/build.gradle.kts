@@ -4,8 +4,8 @@ plugins {
     `java-gradle-plugin`
     `maven-publish`
     jacoco
-    kotlin("jvm")
-    id("org.jlleitschuh.gradle.ktlint")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.ktlint)
 }
 
 apply(from = "../gradle/jacoco.gradle.kts")
@@ -26,7 +26,7 @@ gradlePlugin {
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 }
 
 java {
