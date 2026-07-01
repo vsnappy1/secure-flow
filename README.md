@@ -28,11 +28,17 @@ This project is currently in early MVP development.
 
 The initial version focuses on a small set of practical checks that can run locally or in CI.
 
+Implemented:
+
+* [Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md)
+
 ## Planned MVP Checks
 
 ### 1. Hardcoded Secret Detection
 
 Detects suspicious hardcoded values in Kotlin, Java, XML, Gradle, and properties files.
+
+Status: implemented. See [Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md) for details.
 
 Example patterns:
 
@@ -220,4 +226,3 @@ jobs:
 SecureFlow aims to become a practical open-source tool for Android developers who want to build secure, privacy-aware, and production-ready mobile applications.
 
 The long-term goal is to help engineering teams move privacy and security checks earlier in the software development lifecycle, where issues are easier and less expensive to fix.
-
