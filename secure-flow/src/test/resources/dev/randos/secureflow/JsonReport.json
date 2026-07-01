@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "critical": 1,
+    "warning": 1,
+    "info": 1
+  },
+  "findings": [
+    {
+      "severity": "CRITICAL",
+      "ruleId": "HardcodedSecret",
+      "message": "Quote \" slash \\ newline\n tab\t backspace\b formfeed\f carriage\r",
+      "filePath": "src/main/App.kt",
+      "lineNumber": 7,
+      "evidence": "apikey=abcd1234"
+    },
+    {
+      "severity": "WARNING",
+      "ruleId": "WarningRule",
+      "message": "warning",
+      "filePath": "gradle.properties",
+      "lineNumber": 2,
+      "evidence": "warn"
+    },
+    {
+      "severity": "INFO",
+      "ruleId": "InfoRule",
+      "message": "info",
+      "filePath": "README.md",
+      "lineNumber": 1,
+      "evidence": "info"
+    }
+  ]
+}

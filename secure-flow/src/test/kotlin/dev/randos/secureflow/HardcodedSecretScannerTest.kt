@@ -1,4 +1,4 @@
-package dev.randos.secureflow.gradle
+package dev.randos.secureflow
 
 import dev.randos.secureflow.gradle.scanner.HardcodedSecretScanner
 import dev.randos.secureflow.gradle.type.Severity

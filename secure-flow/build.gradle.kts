@@ -38,6 +38,14 @@ kotlin {
     jvmToolchain(8)
 }
 
+tasks.withType<Test>().configureEach {
+    javaLauncher.set(
+        javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    )
+}
+
 ktlint {
     reporters {
         reporter(ReporterType.HTML)
