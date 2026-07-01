@@ -15,6 +15,8 @@ version = "0.1.0"
 
 gradlePlugin {
     plugins {
+        website.set("https://github.com/vsnappy1/secure-flow")
+        vcsUrl.set("https://github.com/vsnappy1/secure-flow")
         create("secureFlow") {
             id = "dev.randos.secure-flow"
             implementationClass = "dev.randos.secureflow.gradle.SecureFlowPlugin"
