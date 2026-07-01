@@ -1,3 +1,9 @@
+<p>
+  <a href="https://plugins.gradle.org/plugin/dev.randos.secure-flow"><img alt="License" src="https://img.shields.io/maven-metadata/v?label=Gradle%20Plugin%20Portal&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fdev%2Frandos%2Fsecure-flow%2Fdev.randos.secure-flow.gradle.plugin%2Fmaven-metadata.xml"/></a>
+  <a href="https://github.com/vsnappy1/secure-flow/actions"><img alt="Build Status" src="https://github.com/vsnappy1/secure-flow/workflows/Android%20CI/badge.svg"/></a>
+  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+</p>
+
 # SecureFlow
 A lightweight Gradle plugin and Android lint rule set that helps Android teams detect privacy, security, and release-readiness issues early in development and CI.
 
