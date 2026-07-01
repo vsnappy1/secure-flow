@@ -2,6 +2,7 @@ package dev.randos.secureflow.gradle.task
 
 import dev.randos.secureflow.gradle.report.ReportWriter
 import dev.randos.secureflow.gradle.scanner.HardcodedSecretScanner
+import dev.randos.secureflow.gradle.utils.LogLinkFormatter
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.file.DirectoryProperty
@@ -33,18 +34,24 @@ abstract class SecureFlowCheckTask : DefaultTask() {
         }
 
         if (findings.isEmpty()) {
-            logger.lifecycle("SecureFlow found no issues. Reports written to {}", reportPath)
+            logger.lifecycle(
+                "SecureFlow found no issues. Reports written to {}",
+                LogLinkFormatter.reportDirectory(reportPath)
+            )
             return
         }
 
-        logger.lifecycle("SecureFlow found {} issue(s). Reports written to {}", findings.size, reportPath)
+        logger.lifecycle(
+            "SecureFlow found {} issue(s). Reports written to {}",
+            findings.size,
+            LogLinkFormatter.reportDirectory(reportPath)
+        )
         findings.forEach { finding ->
             logger.lifecycle(
-                "[{}] {} at {}:{}",
+                "[{}] {} at {}",
                 finding.severity,
                 finding.message,
-                finding.filePath,
-                finding.lineNumber
+                LogLinkFormatter.finding(scanPath, finding)
             )
         }
 

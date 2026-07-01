@@ -1,7 +1,10 @@
 package dev.randos.secureflow
 
 import dev.randos.secureflow.gradle.SecureFlowPlugin
+import dev.randos.secureflow.gradle.model.Finding
 import dev.randos.secureflow.gradle.task.SecureFlowCheckTask
+import dev.randos.secureflow.gradle.type.Severity
+import dev.randos.secureflow.gradle.utils.LogLinkFormatter
 import dev.randos.secureflow.gradle.utils.SecureFlowExtension
 import java.io.File
 import java.nio.charset.StandardCharsets
@@ -87,6 +90,31 @@ class SecureFlowPluginTest {
         val task = taskFor(projectDir, reportDir, failOnFindings = true)
 
         task.run()
+    }
+
+    @Test
+    fun reportDirectoryLogLinkIsClickableFileUri() {
+        val reportDir = temporaryFolder.newFolder("clickable-reports").toPath()
+
+        assertEquals(reportDir.toUri().toString(), LogLinkFormatter.reportDirectory(reportDir))
+    }
+
+    @Test
+    fun findingLogLinkIsClickableFileUriWithLineNumber() {
+        val projectDir = temporaryFolder.newFolder("clickable-project").toPath()
+        val sourcePath = projectDir.resolve("src/main/java/dev/randos/sample/sample.kt")
+        Files.createDirectories(sourcePath.parent)
+        Files.write(sourcePath, "val secret = \"abc123456789xyz\"\n".toByteArray(StandardCharsets.UTF_8))
+        val finding = Finding(
+            severity = Severity.CRITICAL,
+            ruleId = "HardcodedSecret",
+            message = "Suspicious hardcoded secret detected",
+            filePath = "src/main/java/dev/randos/sample/sample.kt",
+            lineNumber = 5,
+            evidence = "val secret = \"abc1...9xyz\""
+        )
+
+        assertEquals("${sourcePath.toUri()}:5", LogLinkFormatter.finding(projectDir, finding))
     }
 
     private fun taskFor(projectDir: File, reportDir: File, failOnFindings: Boolean): SecureFlowCheckTask {
