@@ -1,7 +1,10 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     `java-gradle-plugin`
     `maven-publish`
     kotlin("jvm")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 group = "dev.randos.secureflow"
@@ -30,4 +33,10 @@ java {
 
 kotlin {
     jvmToolchain(8)
+}
+
+ktlint {
+    reporters {
+        reporter(ReporterType.HTML)
+    }
 }

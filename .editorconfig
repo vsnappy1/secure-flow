@@ -1,0 +1,12 @@
+# This section applies to all Kotlin files
+[*.{kt,kts}]
+ktlint_code_style = android_studio
+max_line_length = 120
+ktlint_standard_annotation = disabled
+
+# This section OVERRIDES the settings above for test files
+[**/src/{test,androidTest}/**/*.{kt,kts}]
+max_line_length = 160
+
+[**/build/generated/**/*.kt]
+ktlint = disabled
