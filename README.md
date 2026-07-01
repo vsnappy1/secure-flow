@@ -5,9 +5,9 @@
 </p>
 
 # SecureFlow
-A lightweight Gradle plugin and Android lint rule set that helps Android teams detect privacy, security, and release-readiness issues early in development and CI.
+SecureFlow is an open-source Android security and privacy automation toolkit designed to help developers identify risky patterns before they reach production. The current MVP provides a Gradle-based hardcoded secret scanner, with planned Android lint rules for unsafe logging, network configuration, exported components, WebView risks, and AI prompt privacy review.
 
-Modern Android applications increasingly process sensitive user data through analytics, logging, backend APIs, AI workflows, and third-party SDK integrations. SecureFlow provides lightweight, CI-friendly checks that help developers detect risky patterns before code reaches production.
+Modern Android applications often process sensitive user data through analytics, logs, backend APIs, AI workflows, and third-party SDK integrations. SecureFlow brings lightweight, CI-friendly privacy and security checks into the Android development workflow so teams can detect issues earlier, reduce manual review effort, and strengthen release readiness.
 
 ## Purpose
 
@@ -30,17 +30,32 @@ SecureFlow helps developers catch these issues early by scanning Android source 
 
 ## Current Status
 
-This project is currently in early MVP development.
+SecureFlow is currently in early MVP development.
 
-The initial version focuses on a small set of practical checks that can run locally or in CI.
+The first implemented capability is Gradle-based hardcoded secret detection. This check scans Kotlin, Java, XML, Gradle, and properties files for suspicious secrets such as API keys, access tokens, bearer tokens, private keys, AI provider keys, Firebase server keys, GitHub tokens, Slack tokens, AWS access key IDs, and SendGrid keys.
 
 Implemented:
 
-* [Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md)
+* Hardcoded Secret Detection
+* Markdown report generation
+* JSON report generation
+* Configurable Gradle extension
+* Build failure support through failOnFindings
+* Local Maven publishing support
+
+Planned next:
+
+* Unsafe logging detection
+* Cleartext traffic detection
+* Exported Android component review
+* Risky WebView configuration detection
+* AI prompt privacy review
+* Android lint integration
+* Android Studio plugin support
 
 ## Planned MVP Checks
 
-### 1. Hardcoded Secret Detection
+### [1. Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md)
 
 Detects suspicious hardcoded values in Kotlin, Java, XML, Gradle, and properties files.
 
