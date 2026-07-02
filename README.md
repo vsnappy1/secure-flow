@@ -135,7 +135,7 @@ Apply the plugin:
 
 ```kotlin
 plugins {
-    id("dev.randos.secure-flow") version "0.2.0"
+    id("dev.randos.secure-flow") version "0.3.0"
 }
 ```
 
