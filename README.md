@@ -5,7 +5,7 @@
 </p>
 
 # SecureFlow
-SecureFlow is an open-source Android security and privacy automation toolkit designed to help developers identify risky patterns before they reach production. The current MVP provides Gradle-based hardcoded secret and unsafe logging scanners, with planned Android lint rules for network configuration, exported components, WebView risks, and AI prompt privacy review.
+SecureFlow is an open-source Android security and privacy automation toolkit designed to help developers identify risky patterns before they reach production. The current MVP provides Gradle-based hardcoded secret, unsafe logging, and cleartext traffic scanners, with planned Android lint rules for exported components, WebView risks, and AI prompt privacy review.
 
 Modern Android applications often process sensitive user data through analytics, logs, backend APIs, AI workflows, and third-party SDK integrations. SecureFlow brings lightweight, CI-friendly privacy and security checks into the Android development workflow so teams can detect issues earlier, reduce manual review effort, and strengthen release readiness.
 
@@ -32,12 +32,13 @@ SecureFlow helps developers catch these issues early by scanning Android source 
 
 SecureFlow is currently in early MVP development.
 
-The first implemented capabilities are Gradle-based hardcoded secret detection and unsafe logging detection. These checks scan source and configuration files for suspicious secrets and risky logging statements that reference sensitive values.
+The first implemented capabilities are Gradle-based hardcoded secret detection, unsafe logging detection, and cleartext traffic detection. These checks scan source and configuration files for suspicious secrets, risky logging statements that reference sensitive values, and unsafe Android network configuration.
 
 Implemented:
 
 * Hardcoded Secret Detection
 * Unsafe Logging Detection
+* Cleartext Traffic Detection
 * Markdown report generation
 * JSON report generation
 * Configurable Gradle extension
@@ -46,7 +47,6 @@ Implemented:
 
 Planned next:
 
-* Cleartext traffic detection
 * Exported Android component review
 * Risky WebView configuration detection
 * AI prompt privacy review
@@ -87,6 +87,8 @@ println(accessToken)
 ### 3. Cleartext Traffic Detection
 
 Detects potentially unsafe network configuration such as:
+
+Status: implemented. See [Cleartext Traffic Detection](docs/cleartext-traffic-detection/README.md) for details.
 
 ```xml
 android:usesCleartextTraffic="true"

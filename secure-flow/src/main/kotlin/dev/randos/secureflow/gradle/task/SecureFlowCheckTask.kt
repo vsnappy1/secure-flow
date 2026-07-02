@@ -1,6 +1,7 @@
 package dev.randos.secureflow.gradle.task
 
 import dev.randos.secureflow.gradle.report.ReportWriter
+import dev.randos.secureflow.gradle.scanner.CleartextTrafficScanner
 import dev.randos.secureflow.gradle.scanner.HardcodedSecretScanner
 import dev.randos.secureflow.gradle.scanner.UnsafeLoggingScanner
 import dev.randos.secureflow.gradle.utils.LogLinkFormatter
@@ -32,7 +33,9 @@ abstract class SecureFlowCheckTask : DefaultTask() {
     fun run() {
         val scanPath = scanDirectory.get().asFile.toPath()
         val reportPath = reportDirectory.get().asFile.toPath()
-        val findings = HardcodedSecretScanner().scan(scanPath) + UnsafeLoggingScanner().scan(scanPath)
+        val findings = HardcodedSecretScanner().scan(scanPath) +
+            UnsafeLoggingScanner().scan(scanPath) +
+            CleartextTrafficScanner().scan(scanPath)
 
         ReportWriter().apply {
             writeMarkdown(reportPath.resolve("privacy-report.md"), findings)
