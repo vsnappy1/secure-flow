@@ -59,7 +59,7 @@ Planned next:
 
 Detects suspicious hardcoded values in Kotlin, Java, XML, Gradle, and properties files.
 
-Status: implemented. See [Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md) for details.
+Status: ✅ implemented. See [Hardcoded Secret Detection](docs/hardcoded-secret-detection/README.md) for details.
 
 Example patterns:
 
@@ -74,7 +74,7 @@ Example patterns:
 
 Flags production logging statements that may expose sensitive values.
 
-Status: implemented. See [Unsafe Logging Detection](docs/unsafe-logging-detection/README.md) for details.
+Status: ✅ implemented. See [Unsafe Logging Detection](docs/unsafe-logging-detection/README.md) for details.
 
 Example patterns:
 
@@ -88,7 +88,7 @@ println(accessToken)
 
 Detects potentially unsafe network configuration such as:
 
-Status: implemented. See [Cleartext Traffic Detection](docs/cleartext-traffic-detection/README.md) for details.
+Status: ✅ implemented. See [Cleartext Traffic Detection](docs/cleartext-traffic-detection/README.md) for details.
 
 ```xml
 android:usesCleartextTraffic="true"
