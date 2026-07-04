@@ -1,10 +1,11 @@
+# SecureFlow
+
 <p>
   <a href="https://plugins.gradle.org/plugin/dev.randos.secure-flow"><img alt="License" src="https://img.shields.io/maven-metadata/v?label=Gradle%20Plugin%20Portal&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fdev%2Frandos%2Fsecure-flow%2Fdev.randos.secure-flow.gradle.plugin%2Fmaven-metadata.xml"/></a>
   <a href="https://github.com/vsnappy1/secure-flow/actions"><img alt="Build Status" src="https://github.com/vsnappy1/secure-flow/workflows/Android%20CI/badge.svg"/></a>
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
 </p>
 
-# SecureFlow
 SecureFlow is an open-source Android security and privacy automation toolkit designed to help developers identify risky patterns before they reach production. The current MVP provides Gradle-based hardcoded secret, unsafe logging, and cleartext traffic scanners, with planned Android lint rules for exported components, WebView risks, and AI prompt privacy review.
 
 Modern Android applications often process sensitive user data through analytics, logs, backend APIs, AI workflows, and third-party SDK integrations. SecureFlow brings lightweight, CI-friendly privacy and security checks into the Android development workflow so teams can detect issues earlier, reduce manual review effort, and strengthen release readiness.
